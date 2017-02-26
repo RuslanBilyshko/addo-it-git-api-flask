@@ -1,0 +1,8 @@
+{
+  "name": "git-api-flask",
+
+
+  "dependencies": {
+    "bootstrap": ">= 3.0.0"
+  }
+}

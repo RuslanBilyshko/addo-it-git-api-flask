@@ -1,0 +1,9 @@
+header {
+    border-bottom:#0f0f0f solid 1px;
+    margin-bottom: 25px;
+}
+
+.user_repo_title {
+    padding: 15px;
+    margin-bottom: 15px;
+}

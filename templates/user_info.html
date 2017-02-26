@@ -1,0 +1,25 @@
+<div class="user_info col-md-6">
+
+    <div class="user_info_avatar col-md-4">
+        <img class="img-responsive" src={{avatar}} alt="{{login}}">
+    </div>
+    <div class="col-md-8">
+        <p><strong>Идентификатор: </strong> {{id}}</p>
+        <p><strong>Логин: </strong> {{login}}</p>
+        <p><strong>Репозиторий: </strong><a target="_blank" href="{{url}}">{{url}}</a></p>
+    </div>
+</div>
+<div class="user_repo col-md-6">
+    <div class="user_repo_title bg-success">Список репозиториев</div>
+    <ul>
+        {% for repo in repos %}
+            <li><a href="{{ repo.get('html_url') }}">{{repo.get("name")}}</a></li>
+        {% endfor %}
+    </ul>
+
+
+</div>
+
+    <div class="col-md-12">
+            <a class="btn btn-info" href="/">Другой пользователь</a>
+    </div>
