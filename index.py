@@ -24,21 +24,20 @@ def user_info():
 
 
     usersss = Owner(username)
-
-    if usersss.status is not "200 OK":
-        abort(400)
-
-
     user_info = usersss.first()
     user_repos = Repository(username).all().select(["html_url", "name"]).get()
     # commit_count = Commit(username).all().count()
+
+    if not usersss.status == "200 OK":
+        abort(404)
 
     info = {
         "login": user_info.get("login"),
         "avatar": user_info.get("avatar_url"),
         "url": user_info.get("html_url"),
         "id": user_info.get("id"),
-        "repos": user_repos
+        "repos": user_repos,
+        "status": usersss.status
     }
 
     content = render_template("user_info.html", **info)
