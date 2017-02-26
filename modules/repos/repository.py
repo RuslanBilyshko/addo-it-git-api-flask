@@ -24,6 +24,7 @@ import os.path
 
 class Repository:
     _base_url = "https://api.github.com/"
+    status = "Status: 200 OK"
 
     def __init__(self, username: str):
         self.username = username
@@ -79,7 +80,9 @@ class Repository:
     def all(self):
         """Загружает полный список в коллекцию"""
 
-        self._collection = requests.get(self.url).json()
+        response = requests.get(self.url)
+        self.status = response.headers.get("status")
+        self._collection = response.json()
         # from repos_data import repos_data
         # self._collection = repos_data
 
@@ -192,6 +195,8 @@ class Owner(Repository):
         # from repos_data import repos_data
         # self._collection = [repos_data[0].get("owner")]
 
-        self._collection = [requests.get(self.url).json()[0].get("owner")]
+        response = requests.get(self.url)
+        self.status = response.headers.get("status")
+        self._collection = [response.json()[0].get("owner")]
 
     def all(self): pass
