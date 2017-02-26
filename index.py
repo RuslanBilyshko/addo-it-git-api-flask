@@ -22,16 +22,14 @@ def home():
 def user_info():
     username = request.values.get('username', None)
 
-    try:
-        pass
-    except ValueError:
-        return render_template('index.html', **{'error': 'Incorrect name'})
 
-    if not username:
+    usersss = Owner(username)
+
+    if usersss.status is not "200 OK":
         abort(400)
 
 
-    user_info = Owner(username).first()
+    user_info = usersss.first()
     user_repos = Repository(username).all().select(["html_url", "name"]).get()
     # commit_count = Commit(username).all().count()
 
